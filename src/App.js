@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { PianoRoll } from './PianoRoll';
+import { PianoRoll } from './components/PianoRoll/PianoRoll';
 import './App.css';
 
 const NUM_ROWS = 12;
