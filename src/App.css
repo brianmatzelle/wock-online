@@ -1,29 +1,6 @@
 .App {
   font-family: sans-serif;
   text-align: center;
-  padding: 30px;
   width: 100vw;
   height: 100vh;
-}
-
-.piano-roll {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 2px;
-}
-
-.piano-row {
-  display: flex;
-}
-
-.piano-cell {
-  background-color: #ccc;
-  width: 30px;
-  height: 30px;
-  border: 1px solid #999;
-  cursor: pointer;
-}
-
-.piano-cell.active {
-  background-color: #2196f3;
 }

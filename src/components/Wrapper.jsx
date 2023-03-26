@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 
-export function Wrapper({ children }) {
-  const [dimensions, setDimensions] = useState({ width: 480, height: 640 });
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+export function Wrapper({ children, containerId, dimensions, setDimensions }) {
+  const [position, setPosition] = useState({ x: 20, y: 20 });
   const [dragging, setDragging] = useState(false);
   const [resizing, setResizing] = useState(false);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const [maximized, setMaximized] = useState(false);
 
   const startDrag = (e) => {
+    if (maximized) return;
     setDragging(true);
     setOffset({ x: e.clientX - position.x, y: e.clientY - position.y });
   };
@@ -23,10 +23,12 @@ export function Wrapper({ children }) {
   };
 
   const startResize = (e) => {
+    if (maximized) return;
     e.stopPropagation();
     setResizing(true);
     setOffset({ x: e.clientX, y: e.clientY });
   };
+  
 
   const duringResize = (e) => {
     if (!resizing) return;
@@ -110,26 +112,39 @@ export function Wrapper({ children }) {
         position: "absolute",
         left: position.x,
         top: position.y,
+        boxShadow: "1px 1px 4px 0px #4B0082",
       }}
     >
       <div
         className="container-header"
         style={{
           width: "100%",
-          height: "20px",
-          backgroundColor: "lightgrey",
+          height: "25px",
+          backgroundColor: "#9e8ad5",
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          padding: "0 4px",
           cursor: "move",
         }}
         onMouseDown={startDrag}
       >
-        <div className="container-title">{children.title}</div>
-        <div className="window-buttons">
+        <div className="container-title" 
+        style={{ 
+          paddingLeft: '4px', 
+          fontFamily: 'Webdings', 
+          color: '',
+          userSelect: 'none',
+        }}>
+          {containerId.title}
+        </div>
+        <div className="window-buttons" style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          paddingRight: "4px",
+        }}>
           <div style={buttonStyle} onClick={minimize}>-</div>
-          <div style={buttonStyle} onClick={maximize}>[]</div>
+          <div style={buttonStyle} onClick={maximize}>🗖</div>
           <div
             style={{
               ...buttonStyle,
