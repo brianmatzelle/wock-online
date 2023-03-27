@@ -4,7 +4,7 @@ import { VariableSizeGrid as Grid } from 'react-window';
 import { Keys } from './Keys';
 import './PianoRoll.css';
 
-export function PianoRoll({ dimensions, setDimensions }) {
+export function PianoRoll({ dimensions, setDimensions, visible, setVisible }) {
   const containerId = {
     id: 'piano-roll',
     title: 'Piano Roll',
@@ -43,7 +43,13 @@ export function PianoRoll({ dimensions, setDimensions }) {
   };
 
   return (
-    <Wrapper containerId={containerId} dimensions={dimensions} setDimensions={setDimensions}>
+    <>
+    {visible && <Wrapper 
+    containerId={containerId} 
+    dimensions={dimensions} 
+    setDimensions={setDimensions}
+    setVisible={setVisible}
+    >
       <div
         className="piano-roll"
         style={{
@@ -66,5 +72,7 @@ export function PianoRoll({ dimensions, setDimensions }) {
         </Grid>
       </div>
     </Wrapper>
+    }
+    </>
   );
 }

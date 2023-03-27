@@ -8,6 +8,11 @@ function App() {
     width: 480,
     height: 640,
   });
+  const [pianoRollVisible, setPiantRollVisible] = useState(true);
+
+  const togglepianoRoll = () => {
+    setPiantRollVisible(!pianoRollVisible);
+  };
 
   return (
     <div className="App" style={{
@@ -24,8 +29,15 @@ function App() {
           width: '100%',
           backgroundColor: '#8787A3',
         }}
+        togglePianoRoll={togglepianoRoll}
       />
-      <PianoRoll dimensions={pianoRollDimensions} setDimensions={setPianoRollDimensions}/>
+
+      <PianoRoll 
+        dimensions={pianoRollDimensions} 
+        setDimensions={setPianoRollDimensions} 
+        visible={pianoRollVisible} 
+        setVisible={setPiantRollVisible}
+      />
     </div>
   );
 }

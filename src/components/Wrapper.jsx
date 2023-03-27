@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 
-export function Wrapper({ children, containerId, dimensions, setDimensions }) {
+export function Wrapper({ 
+  children, 
+  setVisible, 
+  containerId, 
+  dimensions, 
+  setDimensions 
+}) {
   const [position, setPosition] = useState({ x: 50, y: 80 });
   const [dragging, setDragging] = useState(false);
   const [resizing, setResizing] = useState(false);
@@ -72,6 +78,7 @@ export function Wrapper({ children, containerId, dimensions, setDimensions }) {
 
   const exit = () => {
     // Perform the exit functionality, such as removing the component from the DOM
+    setVisible(false);
   };
 
   useEffect(() => {
@@ -137,7 +144,7 @@ export function Wrapper({ children, containerId, dimensions, setDimensions }) {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          cursor: "move",
+          cursor: "grab",
         }}
         onMouseDown={startDrag}
       >
