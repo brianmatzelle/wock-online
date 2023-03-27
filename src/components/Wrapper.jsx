@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 export function Wrapper({ children, containerId, dimensions, setDimensions }) {
-  const [position, setPosition] = useState({ x: 20, y: 20 });
+  const [position, setPosition] = useState({ x: 50, y: 80 });
   const [dragging, setDragging] = useState(false);
   const [resizing, setResizing] = useState(false);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
@@ -15,8 +15,21 @@ export function Wrapper({ children, containerId, dimensions, setDimensions }) {
 
   const duringDrag = (e) => {
     if (!dragging) return;
-    setPosition({ x: e.clientX - offset.x, y: e.clientY - offset.y });
+    const newX = e.clientX - offset.x;
+    const newY = e.clientY - offset.y;
+  
+    // Check screen bounds
+    const minX = 0;
+    const minY = 50;  // 50 for header height
+    const maxX = window.innerWidth - dimensions.width;
+    const maxY = window.innerHeight - dimensions.height;
+  
+    const boundedX = Math.min(Math.max(minX, newX), maxX);
+    const boundedY = Math.min(Math.max(minY, newY), maxY);
+  
+    setPosition({ x: boundedX, y: boundedY });
   };
+  
 
   const endDrag = () => {
     setDragging(false);
