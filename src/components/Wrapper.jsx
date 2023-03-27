@@ -119,7 +119,7 @@ export function Wrapper({ children, containerId, dimensions, setDimensions }) {
         className="container-header"
         style={{
           width: "100%",
-          height: "25px",
+          height: "20px",
           backgroundColor: "#9e8ad5",
           display: "flex",
           justifyContent: "space-between",

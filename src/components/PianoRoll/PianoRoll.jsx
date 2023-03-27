@@ -32,15 +32,16 @@ export function PianoRoll({ dimensions, setDimensions }) {
       <div
         className="piano-roll"
         style={{
-          width: '100%',
-          height: '100%',
+          display: 'flex',
+          flexDirection: 'row',
           overflow: 'auto',
         }}
       >
+        {/* <Keys /> */}
         <Grid
           columnCount={numberOfColumns}
           columnWidth={() => cellWidth}
-          height={dimensions.height} // Adjust for wrapper's header height
+          height={dimensions.height - 25} // Adjust for wrapper's header height
           rowCount={numberOfRows}
           rowHeight={() => cellHeight}
           width={dimensions.width}
