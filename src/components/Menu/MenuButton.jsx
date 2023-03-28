@@ -3,6 +3,13 @@ import { Dropdown } from 'react-bootstrap';
 
 export default function MenuButton({ type }) {
   const [show, setShow] = useState(false);
+  const itemStyle = {
+    backgroundColor: 'lightgray',
+  };
+  const itemContainerStyle = {
+    display: 'flex',
+    flexDirection: 'column',
+  };
 
   const handleToggle = (isOpen, e, metadata) => {
     if (metadata.source === 'select') {
@@ -30,34 +37,50 @@ export default function MenuButton({ type }) {
       case 'file':
         return (
           <>
-            <Dropdown.Item>New</Dropdown.Item>
-            <Dropdown.Item>Open</Dropdown.Item>
-            <Dropdown.Item>Save</Dropdown.Item>
+            { show &&
+            <div style={itemContainerStyle} onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>
+              <Dropdown.Item style={itemStyle}>New</Dropdown.Item>
+              <Dropdown.Item style={itemStyle}>Open</Dropdown.Item>
+              <Dropdown.Item style={itemStyle}>Save</Dropdown.Item>
+            </div>
+            }
           </>
         );
       case 'edit':
         return (
           <>
-            <Dropdown.Item>Undo</Dropdown.Item>
-            <Dropdown.Item>Redo</Dropdown.Item>
-            <Dropdown.Item>Cut</Dropdown.Item>
-            <Dropdown.Item>Copy</Dropdown.Item>
-            <Dropdown.Item>Paste</Dropdown.Item>
+            { show && 
+            <div style={itemContainerStyle} onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>
+              <Dropdown.Item>Undo</Dropdown.Item>
+              <Dropdown.Item>Redo</Dropdown.Item>
+              <Dropdown.Item>Cut</Dropdown.Item>
+              <Dropdown.Item>Copy</Dropdown.Item>
+              <Dropdown.Item>Paste</Dropdown.Item>
+            </div>
+            }
           </>
         );
       case 'view':
         return (
           <>
-            <Dropdown.Item>Zoom In</Dropdown.Item>
-            <Dropdown.Item>Zoom Out</Dropdown.Item>
-            <Dropdown.Item>Reset Zoom</Dropdown.Item>
+          { show &&
+            <div style={itemContainerStyle} onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>
+              <Dropdown.Item>Zoom In</Dropdown.Item>
+              <Dropdown.Item>Zoom Out</Dropdown.Item>
+              <Dropdown.Item>Reset Zoom</Dropdown.Item>
+            </div>
+          }
           </>
         );
       case 'help':
         return (
           <>
-            <Dropdown.Item>About</Dropdown.Item>
-            <Dropdown.Item>Documentation</Dropdown.Item>
+          { show &&
+            <div style={itemContainerStyle} onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>
+              <Dropdown.Item>About</Dropdown.Item>
+              <Dropdown.Item>Documentation</Dropdown.Item>
+            </div>
+          }
           </>
         );
       default:
